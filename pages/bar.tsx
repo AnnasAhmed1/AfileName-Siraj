@@ -38,13 +38,15 @@ const BarChart = () => {
                 //   "rgba(255, 159, 64, 0.6)", // Orange
               ],
               borderWidth: 0,
-              barThickness: 87,
+              // barThickness: 87,
               borderRadius: 6,
               // xAxisID:[0,0,0,0,0]
             },
           ],
         },
         options: {
+          responsive: true,
+          // maintainAspectRatio:false,
           scales: {
             y: {
               beginAtZero: false,
@@ -86,9 +88,11 @@ const BarChart = () => {
     <div
       className="
     pt-8
+    w-[75%]
+    max-sm:w-full
     "
     >
-      <canvas width={700} height={400} ref={chartRef} id="myChart"></canvas>
+      <canvas width={50} height={30} ref={chartRef} id="myChart"></canvas>
     </div>
   );
 };

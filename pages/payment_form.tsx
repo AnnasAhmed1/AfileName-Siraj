@@ -29,14 +29,15 @@ const PaymentForm = () => {
     font-manrope
     text-[#242634]
     w-full/
-    w-[calc(100%-240px)]
-    sm:w-[calc(100%-200px)]
+    w-[calc(100%-240px)]/
+    sm:w-[calc(100%-200px)]/
     xs:w-full
     pl-[3.5%] 
     pr-[2%]
     mt-[1%]
     sm:mt-[25px]
     w-[500px]
+    sm:w-full
     mx-auto
     "
       >
