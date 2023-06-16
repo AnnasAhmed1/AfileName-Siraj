@@ -3,10 +3,13 @@ import React from "react";
 const ButtonComp = ({
   text,
   className,
+  width,
 }: {
   text: string;
   className?: string;
+  width?: any;
 }) => {
+  console.log(className);
   return (
     <button
       className={`
@@ -26,6 +29,7 @@ const ButtonComp = ({
         mr-[10px]
         sm:mr-[5px]
         ${className}
+        ${width ? `w-[${width}]` : ""}
        `}
     >
       {text}
