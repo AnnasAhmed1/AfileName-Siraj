@@ -321,7 +321,16 @@ export default function DrawerContent({
             </p>
           </ListItemButton>
         </div>
-        <ButtonComp text="Upgrade Plan" />
+        <ButtonComp
+          text="Upgrade Plan"
+          className="
+        my-[40px]
+        sm:my-[25px]
+        mr-[10px]
+        sm:mr-[5px]
+        w-[90%]
+        "
+        />
         <div
           className="
                 text-[10px]

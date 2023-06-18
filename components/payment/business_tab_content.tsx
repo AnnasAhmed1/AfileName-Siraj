@@ -72,7 +72,7 @@ const BusinessTabContent = (props: Props) => {
         By using AFILENAME you could save:{" "}
         <span className="font-[500]">$55,000.00 a month!</span>
       </p>
-      <ButtonComp className="my-0 w-36" width={"144px"} text="Get Started" />
+      <ButtonComp className="my-0 w-[144px]" text="Get Started" />
       <BarChart />
     </div>
   );

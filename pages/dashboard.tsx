@@ -6,16 +6,14 @@ import {
 } from "@/config/API_actions";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import { Button, Menu, MenuItem } from "@mui/material";
 import DrawerComp from "@/components/responsive_drawer";
 import Image from "next/image";
 import FileList from "@/components/file_list";
 
 // ICONS
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { toast } from "react-toastify";
 import FileUpload from "@/components/file_upload";
-import DarkLightIcon from "@/components/dark_light_icon";
+import EmailAndTheme from "@/components/email_and_theme";
 
 interface MyObject {
   name: string;
@@ -35,17 +33,10 @@ export default function Dashboard() {
   const [folders, setFolders] = useState([]);
   const [newFolderName, setNewFolderName] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
   const [uploadingFiles, setUploadingFiles] = useState<Array<any>>([]);
-  const [email, setEmail] = useState<string>();
 
   useEffect(() => {
-    !Cookies.get("apikey")
-      ? router.push("/")
-      : (getFolders(),
-        getFiles(),
-        setEmail(Cookies.get("email")?.split("@")[0]));
+    !Cookies.get("apikey") ? router.push("/") : (getFolders(), getFiles());
   }, []);
 
   const handleFileChangeFunction = (event: any) => {
@@ -191,48 +182,8 @@ export default function Dashboard() {
               });
             }}
           />
-          <div className="pl-4 md:pl-2 sm:pl-1 flex gap-4 md:gap-1 sm:gap-0 items-center">
-            <div>
-              <p className="text-[#2E3271]  dark:text-[#5073d2] text-base sm:text-xs font-semibold">
-                {email}
-              </p>
-              <p className="font-manrope text-[#7c8db5b8] text-xs sm:text-[10px]">
-                Premium
-              </p>
-            </div>
-            <p>
-              <Button
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={(event: any) => {
-                  setAnchorEl(event.currentTarget);
-                }}
-                className="w-fit min-w-0"
-              >
-                <KeyboardArrowDownIcon className="text-lg my-auto h-fit dark:text-white" />
-              </Button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={() => {
-                  setAnchorEl(null);
-                }}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-                PaperProps={{
-                  className:
-                    "dark:bg-[#252525] dark:text-white text-[#545454] text-base font-medium",
-                }}
-              >
-                <MenuItem>Logout</MenuItem>
-              </Menu>
-            </p>
-          </div>
-          <DarkLightIcon />
+
+          <EmailAndTheme />
         </section>
         {searchQuery.length == 0 ? (
           <>

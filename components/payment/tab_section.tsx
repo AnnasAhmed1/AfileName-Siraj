@@ -1,7 +1,8 @@
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, Menu } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import DrawerComp from "@/components/responsive_drawer";
+import { MenuItem } from "@mui/base";
 
 type TabbarProps = {
   personalPathname: boolean;
@@ -18,12 +19,32 @@ const TabSection: React.FC<TabbarProps> = ({
   const moveToPersonalTab = () => router.push("/payment/personal");
   // move to business tab
   const moveToBusinessTab = () => router.push("/payment/business");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const open = Boolean(anchorEl);
   return (
     <section
       className={`flex items-center justify-center ${
         businessPathname && "flex-row-reverse"
       }`}
     >
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => {
+          setAnchorEl(null);
+        }}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+        PaperProps={{
+          className:
+            "dark:bg-[#252525]  dark:text-white text-[#545454] text-base font-medium",
+        }}
+      >
+        <MenuItem>Logout</MenuItem>
+      </Menu>
       <button
         className={`${
           personalPathname

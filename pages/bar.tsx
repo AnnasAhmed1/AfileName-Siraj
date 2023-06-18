@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-import { red } from "@mui/material/colors";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 const BarChart = () => {
   // const chartRef = useRef(null);
@@ -21,12 +21,18 @@ const BarChart = () => {
     if (chartRef.current) {
       const ctx = chartRef?.current?.getContext("2d");
 
-      new Chart(ctx ? ctx : "", {
+      Chart.register(ChartDataLabels);
+      const newChart = new Chart(ctx ? ctx : "", {
+        plugins: [ChartDataLabels],
         type: "bar",
+
         data: {
           labels: ["AFILENAME", "backBlaze", "Azure", "Google", "AWS"],
           datasets: [
             {
+              // maxBarThickness: 900,
+              // barThickness: 85,
+              minBarLength: 40,
               data: [1000, 8000, 44800, 56000, 53000],
               // label: "Applied",
               backgroundColor: [
@@ -46,8 +52,38 @@ const BarChart = () => {
         },
         options: {
           responsive: true,
+          plugins: {
+            // Configure the plugin options
+            // Configure the plugin options
+            datalabels: {
+              anchor: "end", // Position the labels at the end of the bars
+              align: "end",
+              color: "rgba(0, 0, 0, 1)",
+              // Customize label color
+              font: {
+                size: 14,
+                weight: "bold",
+                family: "Manrope",
+              },
+              formatter: function (value) {
+                // Format the label as desired
+                return "$" + value.toString(); // Display the value as a string
+              },
+            },
+            tooltip: {
+              enabled: false,
+              // Disable tooltip
+            },
+
+            legend: {
+              display: false, // Hide legend
+            },
+          },
           // maintainAspectRatio:false,
           scales: {
+            // myScale: {
+            //   position: 'right', // `axis` is determined by the position as `'y'`
+            // },
             y: {
               beginAtZero: false,
               display: false,
@@ -64,19 +100,11 @@ const BarChart = () => {
                   size: 12,
                   weight: "bold",
                 },
+
                 color: "rgba(0, 0, 0, 0.6)", // Customize scale label color
               },
               // @ts-ignore
               drawBorder: false, // Remove line from x-axis scale at the bottom
-            },
-          },
-          plugins: {
-            tooltip: {
-              enabled: false, // Disable tooltip
-            },
-
-            legend: {
-              display: false, // Hide legend
             },
           },
         },
@@ -87,12 +115,20 @@ const BarChart = () => {
   return (
     <div
       className="
-    pt-8
-    w-[75%]
-    max-sm:w-full
+    mt-8
+    w-[65%]
+    mx-auto/
+    md:w-full
+    sm:w-full
+    h-full
     "
     >
-      <canvas width={50} height={30} ref={chartRef} id="myChart"></canvas>
+      <canvas
+        width={"750px"}
+        height={"700px"}
+        ref={chartRef}
+        id="myChart"
+      ></canvas>
     </div>
   );
 };
