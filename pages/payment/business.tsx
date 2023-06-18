@@ -22,7 +22,7 @@ const BusinessPayment = () => {
   const personalPathname = ["/payment/personal"].includes(pathname);
   const businessPathname = ["/payment/business"].includes(pathname);
   useEffect(() => {
-    // !Cookies.get("apikey") ? router.push("/") : null;
+    !Cookies.get("apikey") ? router.push("/") : null;
   }, []);
   const handleFileChangeFunction = (event: any) => {
     const file = event.target.files[0];

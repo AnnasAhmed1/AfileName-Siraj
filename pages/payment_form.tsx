@@ -21,7 +21,7 @@ const PaymentForm = () => {
   const [uploadingFiles, setUploadingFiles] = useState<Array<any>>([]);
 
   useEffect(() => {
-    // !Cookies.get("apikey") ? router.push("/") : (getFolders(), getFiles());
+    !Cookies.get("apikey") ? router.push("/") : (getFolders(), getFiles());
   }, []);
   const handleFileChangeFunction = (event: any) => {
     const file = event.target.files[0];
@@ -143,7 +143,10 @@ const PaymentForm = () => {
           <LockIcon />
           <h1>Add your card</h1>
         </div>
-        <p>Your information is secured by <span className="text-[#1890FF]">Stripe.</span> </p>
+        <p>
+          Your information is secured by{" "}
+          <span className="text-[#1890FF]">Stripe.</span>{" "}
+        </p>
         <div className="w-[100%]/">
           <form
             action=""
@@ -360,12 +363,11 @@ const PaymentForm = () => {
                 className="text-base text-blue-500 !important"
               />
               <p>
-
-              My Free Trial ends in one month and I will be billed starting on
-              <b> June 1, 2023 </b>. If I want to cancel I can do so by
-              contacting support@afilename.com or handling it on the dashboard.
-              I also can claim a money-back guarantee within 30 days of my free
-              trial by reaching out to support for any reason.
+                My Free Trial ends in one month and I will be billed starting on
+                <b> June 1, 2023 </b>. If I want to cancel I can do so by
+                contacting support@afilename.com or handling it on the
+                dashboard. I also can claim a money-back guarantee within 30
+                days of my free trial by reaching out to support for any reason.
               </p>
             </p>
             <p className="text-14 sm:text-xs text-[rgba(0,0,0,0.85)] dark:text-[rgba(255,255,255,0.85)] flex items-center gap-[6px]">
@@ -375,9 +377,13 @@ const PaymentForm = () => {
                 }}
                 className="text-base text-blue-500 !important"
               />
-              I agree to the{" "}
-              <span className="text-[#1890FF]">Terms of Service</span> and{" "}
-              <span className="text-[#1890FF]">Privacy</span> agreements.
+              <p>
+                I agree to the
+                <span className="text-[#1890FF]">
+                  Terms of Service
+                </span> and <span className="text-[#1890FF]">Privacy</span>{" "}
+                agreements.
+              </p>
             </p>
           </div>
         </div>

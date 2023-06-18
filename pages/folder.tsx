@@ -7,10 +7,7 @@ import {
   handleFetchAction,
   handleInsertAction,
 } from "@/config/API_actions";
-import { useTheme } from "next-themes";
-import { Button, Menu, MenuItem } from "@mui/material";
 // ICONS
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DrawerComp from "@/components/responsive_drawer";
 import Cookies from "js-cookie";
 import FolderCopyIcon from "@mui/icons-material/FolderCopy";
@@ -18,7 +15,6 @@ import FileList from "@/components/file_list";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { toast } from "react-toastify";
 import FileUpload from "@/components/file_upload";
-import DarkLightIcon from "@/components/dark_light_icon";
 import EmailAndTheme from "@/components/email_and_theme";
 
 interface FileObject {
